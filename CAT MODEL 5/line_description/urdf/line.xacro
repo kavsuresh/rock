@@ -1,0 +1,84 @@
+<?xml version="1.0" ?>
+<robot name="ASSESSMENT" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find ASSESSMENT_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find ASSESSMENT_description)/urdf/ASSESSMENT.trans" />
+<xacro:include filename="$(find ASSESSMENT_description)/urdf/ASSESSMENT.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="0.02805125579812227 0.02702682334217834 0.0043038264852525605" rpy="0 0 0"/>
+    <mass value="2.3724092855579104"/>
+    <inertia ixx="0.003131" iyy="0.009101" izz="0.00928" ixy="-0.000285" iyz="0.0" ixz="-5e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ASSESSMENT_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ASSESSMENT_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_wheel_1">
+  <inertial>
+    <origin xyz="9.095998329544663e-09 4.4840873008808457e-07 -0.005000299389139373" rpy="0 0 0"/>
+    <mass value="0.6165375582669969"/>
+    <inertia ixx="0.00039" iyy="0.00039" izz="0.000771" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.068339 -0.029922 0.05066" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ASSESSMENT_description/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.068339 -0.029922 0.05066" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ASSESSMENT_description/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_wheel_1">
+  <inertial>
+    <origin xyz="-1.0726383301018494e-07 1.1895842625189723e-07 -0.005000299389139366" rpy="0 0 0"/>
+    <mass value="0.6165375582669969"/>
+    <inertia ixx="0.00039" iyy="0.00039" izz="0.000771" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.067804 -0.030246 -0.05934" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ASSESSMENT_description/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.067804 -0.030246 -0.05934" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ASSESSMENT_description/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="Rev1" type="continuous">
+  <origin xyz="-0.068339 0.029922 -0.05066" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="left_wheel_1"/>
+  <axis xyz="0.0 0.0 -1.0"/>
+</joint>
+
+<joint name="Rev2" type="continuous">
+  <origin xyz="-0.067804 0.030246 0.05934" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="right_wheel_1"/>
+  <axis xyz="-0.0 -0.0 1.0"/>
+</joint>
+
+</robot>
